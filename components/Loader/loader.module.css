@@ -1,0 +1,18 @@
+.wrapper {
+  display: inline-block;
+  border: 2px solid var(--foreground);
+  border-radius: 100%;
+  animation: loading 0.7s ease-out infinite;
+}
+
+@keyframes loading {
+  from {
+    transform: scale(0);
+    opacity: 1;
+  }
+
+  to {
+    transform: scale(1.2);
+    opacity: 0;
+  }
+}
