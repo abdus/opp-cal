@@ -18,7 +18,11 @@ export default function Home() {
           <Loader />
         </p>
         <p>
-          <button type="button">click me</button>
+          <button type="button">button</button>
+        </p>
+        <p>
+          <input type="text" />
+          <textarea id="" name="" />
         </p>
       </Layout>
     </>
