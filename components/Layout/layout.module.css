@@ -1,0 +1,23 @@
+.wrapper {
+  display: grid;
+  grid-gap: 0.5rem;
+  grid-template-columns: 1.3fr 2.2fr 1.3fr;
+  max-width: 90rem;
+  margin: auto;
+}
+
+.wrapper > * {
+  padding: 0.5rem;
+  border-radius: 0.3rem;
+  word-break: break-word;
+}
+
+@media (max-width: 60rem) {
+  .wrapper {
+    grid-template-columns: 1fr;
+  }
+
+  .wrapper main {
+    grid-row: 1 / span 1;
+  }
+}
