@@ -14,9 +14,12 @@ export default function Home() {
         <code>components/Layout/index.tsx</code>
         , and remove default left
         and right column values.
-        <div>
+        <p>
           <Loader />
-        </div>
+        </p>
+        <p>
+          <button type="button">click me</button>
+        </p>
       </Layout>
     </>
   );

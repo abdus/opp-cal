@@ -37,9 +37,23 @@ a {
 }
 
 button {
+  padding: 0.3rem 0.8rem;
+  color: var(--background);
+  font: inherit;
+  background-color: var(--foreground);
+  border: 1px solid var(--foreground);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: 0.3s ease color, 0.3s ease background-color;
+}
+
+button:hover {
   color: var(--foreground);
   background-color: var(--background);
-  border: 1px solid var(--foreground);
+}
+
+* {
+  box-sizing: border-box;
 }
 
 * {
