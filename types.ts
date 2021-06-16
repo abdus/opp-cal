@@ -1,15 +1,6 @@
-import firebase from 'firebase/app'
-
-export type UserType = {
+export type AuthUserType = {
   id: string;
-  avatarUrl: string|null;
-  displayName: string|null;
-};
-
-export type PhraseType = {
-  title: string;
-  isPublic: boolean;
-  phonetics: string;
-  description: string;
-  owner: firebase.firestore.DocumentReference|UserType;
-};
+  email: string;
+  fullName?: string;
+  avatarUrl?: string;
+}

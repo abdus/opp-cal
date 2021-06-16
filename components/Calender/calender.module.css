@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.container .cell {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  /*padding: 0.3rem;*/
+  color: var(--background_input);
+  border: 1px solid var(--background_input);
+}
+
+.cell small,
+.cell span.date {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.3rem;
+  text-transform: uppercase;
+}
+
+.cell span.date {
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2em;
+}
+
+.dot {
+  border: none;
+  margin: 0;
+  border-radius: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  color: var(--background);
+  background-color: var(--foreground);
+}

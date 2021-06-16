@@ -1,13 +1,13 @@
 .wrapper {
   display: grid;
   grid-gap: 0.5rem;
-  grid-template-columns: 1.3fr 2.2fr 1.3fr;
-  max-width: 90rem;
+  grid-template-columns: 1.1fr 2.2fr 1.1fr;
+  max-width: var(--max-content-width);
   margin: auto;
 }
 
 .wrapper > * {
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border-radius: 0.3rem;
   word-break: break-word;
 }

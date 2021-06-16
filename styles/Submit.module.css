@@ -1,0 +1,39 @@
+.form label {
+  display: block;
+  margin: 0.7rem 0;
+}
+
+.form .row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.row label {
+  width: 48%;
+}
+
+.form button {
+  width: 100%;
+  padding: 0.7rem 1.3rem;
+}
+
+.form img {
+  display: block;
+  width: auto;
+  max-width: 100%;
+  margin: 1rem auto;
+}
+
+.form h3 {
+  display: inline-block;
+  padding: 0.4rem;
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+.color_red {
+  padding-left: 0.3rem;
+  color: red;
+  font-weight: bold;
+}

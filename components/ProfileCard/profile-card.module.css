@@ -1,0 +1,33 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+  padding: 1rem;
+  background-color: var(--background_input);
+  border-radius: var(--border-radius);
+}
+
+.container button {
+  width: 100%;
+  margin: 0;
+  margin-top: 2rem;
+  color: var(--foreground);
+  background-color: var(--background);
+  border: none;
+  padding: 0.7rem;
+}
+
+.container img {
+  width: auto;
+  max-width: 7rem;
+  height: auto;
+  max-height: 7rem;
+  margin-top: 2rem;
+  border-radius: 50%;
+}
+
+.container h3 {
+  margin: 0.5rem 0 0 0;
+}

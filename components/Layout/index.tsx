@@ -19,7 +19,7 @@ export function Layout(props: PropType) {
 }
 
 Layout.defaultProps = {
-  left: 'left column',
-  right: 'right column',
+  left: '',
+  right: '',
   style: {},
 };

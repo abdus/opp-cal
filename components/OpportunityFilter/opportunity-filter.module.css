@@ -1,0 +1,23 @@
+.container {
+  display: flex;
+  margin: 0.4rem 0;
+  padding: 0.7rem 1rem;
+  font-size: 0.8em;
+  background-color: var(--background_input);
+  border-radius: var(--border-radius);
+}
+
+.row {
+  display: flex;
+  white-space: nowrap;
+}
+
+.row input {
+  min-width: 1rem;
+  margin-right: 0.3rem;
+}
+
+.row select {
+  overflow: auto;
+  height: 2rem;
+}

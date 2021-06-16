@@ -1,5 +1,8 @@
 .wrapper {
-  position: relative;
+  position: fixed;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1000;
   display: inline-block;
   width: 3rem;
   height: 3rem;
@@ -8,9 +11,6 @@
   background-color: var(--foreground);
   border: 2px solid var(--foreground);
   border-radius: 100%;
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
   user-select: none;
 }
 

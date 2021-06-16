@@ -1,0 +1,38 @@
+.form label {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form input[type='button'] {
+  /*width: unset;*/
+  /*margin-left: 0.6rem;*/
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.error_box,
+.success {
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  color: red;
+  background-color: #ff000010;
+  border: 1px solid red;
+  border-radius: 0.3rem;
+  transition: 0.3s ease opacity;
+}
+
+/*.success {*/
+/*color: #5A7FF2;*/
+/*background-color: #5A7FF210;*/
+/*border: 1px solid #5A7FF2;*/
+/*}*/
+
+@media (max-width: 1000px) {
+  .form label {
+    flex-direction: column;
+  }
+
+  .form input[type='button'] {
+    margin-left: 0;
+  }
+}
