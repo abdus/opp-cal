@@ -40,6 +40,7 @@ export function OpportunityCard(props: PropType) {
       onClick={() => setShowDesc(!showDesc)}
       onKeyDown={(ev) => ev.key === 'Enter' && setShowDesc(!showDesc)}
     >
+      {console.log(props.logoURL)}
       <span className={classes.expand_handler} />
       <div className={classes.header}>
         <div className={classes.image}>
@@ -48,7 +49,6 @@ export function OpportunityCard(props: PropType) {
             ref={imgRef}
             src={props.logoURL}
             onLoad={() => {
-              console.log('loaded');
               setImgLoaded(true);
             }}
             style={{

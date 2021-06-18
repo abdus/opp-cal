@@ -31,6 +31,7 @@ export function ContextProvider(props: {
     // whenever Auth's State changes
     const unsub = supabase.auth.onAuthStateChange((event, session) => {
       if (session?.user?.id && session.user.email) {
+
         setAuthUser({
           fullName: session?.user?.user_metadata.full_name,
           id: session.user.id,

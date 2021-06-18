@@ -1,7 +1,9 @@
 import React from 'react';
-import classes from './opportunity-filter.module.css';
+// import classes from './opportunity-filter.module.css';
 
-type PropType = {};
+type PropType = {
+  onChange?(value: string): void;
+};
 
 export function OpportunityFilter(props: PropType) {
   return (
@@ -15,7 +17,20 @@ export function OpportunityFilter(props: PropType) {
         </div>
       </div>
       */}
-      <input type="search" name="" placeholder="search..." />
+      <input
+        type="search"
+        name=""
+        placeholder="search..."
+        onChange={(ev) => {
+          if (typeof props.onChange === 'function') {
+            props.onChange(ev.target.value);
+          }
+        }}
+      />
     </>
   );
 }
+
+OpportunityFilter.defaultProps = {
+  onChange: () => {},
+};

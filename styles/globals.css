@@ -43,6 +43,9 @@ body {
 }
 
 *:disabled {
+  color: lightgray !important;
+  background-color: gray !important;
+  border-color: gray !important;
   cursor: not-allowed !important;
 }
 

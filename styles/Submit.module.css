@@ -37,3 +37,10 @@
   color: red;
   font-weight: bold;
 }
+
+.file_upload {
+  margin-top: 0.3rem;
+  padding: 0.3rem;
+  background-color: var(--background_input);
+  border-radius: var(--border-radius);
+}

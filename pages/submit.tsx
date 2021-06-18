@@ -8,6 +8,7 @@ import { EmailSubscription } from '../components/EmailSubscription';
 import { Loader } from '../components/Loader';
 import { ProfileCard } from '../components/ProfileCard';
 import { InputField } from '../components/InputField';
+import { FileUpload } from '../components/FileUpload';
 
 import { AuthUserContext } from '../context';
 import { useInsertIntoDB } from '../hooks/useInsertIntoDB';
@@ -17,8 +18,9 @@ import { useFormValidator, validators } from '../hooks/useFormValidator';
 // eslint-disable-next-line
 export default function Submit() {
   const toast = useToasts();
-  const authUser = React.useContext(AuthUserContext);
   const formValidator = useFormValidator();
+  const authUser = React.useContext(AuthUserContext);
+  const [companyLogoUri, setCompanyLogoUri] = React.useState<string>();
   const insertOppToDb = useInsertIntoDB<definitions['opportunities']>();
 
   React.useEffect(() => {
@@ -43,6 +45,7 @@ export default function Submit() {
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <form
           className={classes.form}
+          onReset={() => setCompanyLogoUri(undefined)}
           onSubmit={(ev) => {
             ev.preventDefault();
 
@@ -73,6 +76,7 @@ export default function Submit() {
                   validators.fnValidateString,
                 ),
                 opp_description: formData.get('description')?.toString(),
+                company_logo_url: formData.get('company-logo')?.toString(),
               };
 
               insertOppToDb('opportunities', opportunityData).then(
@@ -177,9 +181,14 @@ export default function Submit() {
             />
           </label>
 
+          {/* eslint-disable-next-line */}
           <label htmlFor="logo">
             <span>Company Logo</span>
-            <input id="logo" type="file" name="company-logo" />
+            <FileUpload
+              className={classes.file_upload}
+              onUpload={(uri: string) => setCompanyLogoUri(uri)}
+            />
+            <input type="hidden" name="company-logo" value={companyLogoUri} />
           </label>
 
           {/* eslint-disable-next-line */}
