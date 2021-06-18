@@ -38,7 +38,7 @@ export default function Home() {
         <OpportunityFilter onChange={handleFilterChnage} />
 
         {Array.isArray(opportunities)
-          && opportunities?.map((opp) => (
+          && opportunities?.reverse()?.map((opp) => (
             <OpportunityCard
               oppTitle={opp.opp_name}
               logoURL={opp.company_logo_url || '#'}
