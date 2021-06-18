@@ -19,9 +19,18 @@ export function ProfileCard(props: PropType) {
             <h3>{authUser.fullName}</h3>
             <small>Software Engineer</small>
 
-            <button type="button" onClick={() => supabase.auth.signOut()}>
-              Sign Out
-            </button>
+            <div className={classes.action_btn}>
+              <button type="button" onClick={() => alert('Work in Progress')}>
+                Profile
+              </button>
+              <button
+                type="button"
+                onClick={() => supabase.auth.signOut()}
+                style={{ background: 'darkred', color: '#fff' }}
+              >
+                Sign Out
+              </button>
+            </div>
           </div>
 
           <div className={classes.container}>STATS</div>

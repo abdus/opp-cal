@@ -11,12 +11,10 @@
 
 .container button {
   width: 100%;
-  margin: 0;
-  margin-top: 2rem;
+  padding: 0.7rem;
   color: var(--foreground);
   background-color: var(--background);
   border: none;
-  padding: 0.7rem;
 }
 
 .container img {
@@ -30,4 +28,10 @@
 
 .container h3 {
   margin: 0.5rem 0 0 0;
+}
+
+.action_btn {
+  display: flex;
+  width: 100%;
+  margin-top: 2rem;
 }

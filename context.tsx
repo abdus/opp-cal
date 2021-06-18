@@ -1,4 +1,5 @@
 import React from 'react';
+import { ToastProvider } from 'react-toast-notifications';
 import { AuthUserType } from './types';
 import { supabase } from './utils/supabase';
 
@@ -46,10 +47,27 @@ export function ContextProvider(props: {
     };
   }, []);
 
+  React.useEffect(() => {
+    if (authUser) {
+      supabase
+        .from('profiles')
+        .upsert({
+          id: authUser?.id,
+          updated_at: new Date().toISOString(),
+          avatar_url: authUser?.avatarUrl,
+          full_name: authUser?.fullName,
+          email: authUser?.email,
+        })
+        .then((resp) => (resp.error
+          ? console.log('could not register user. error: ', resp.error)
+          : null));
+    }
+  }, [authUser]);
+
   return (
     <>
       <AuthUserContext.Provider value={authUser}>
-        {props.children}
+        <ToastProvider placement="top-center">{props.children}</ToastProvider>
       </AuthUserContext.Provider>
     </>
   );

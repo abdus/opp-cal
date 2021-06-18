@@ -9,7 +9,9 @@ export function EmailSubscription() {
   return (
     <>
       <form className={classes.form}>
-        <h3>Don&apos;t Miss on another Opportunity. Subscribe Now!</h3>
+        <h3 style={{ marginTop: 0 }}>
+          Don&apos;t Miss on another Opportunity. Subscribe Now!
+        </h3>
         <label htmlFor="email-subscription">
           <input
             id="email-subscription"

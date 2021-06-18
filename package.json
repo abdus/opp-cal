@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "gc": "./scripts/generate-component.bash "
+    "gc": "./scripts/generate-component.bash ",
+    "sync-supabase-types": "npx openapi-typescript https://npajnxrvfqsrnbjomevs.supabase.co/rest/v1/?apikey=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYyMzgxNjY5MSwiZXhwIjoxOTM5MzkyNjkxfQ.qqoVF21KieNJswLzNpJzu7Qlx5yaYSbQk8ZKfGSyom4 --output types/supabase-types.ts"
   },
   "dependencies": {
     "@fontsource/lato": "^4.4.2",
@@ -15,6 +16,7 @@
     "next": "10.2.3",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-toast-notifications": "^2.4.4",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
