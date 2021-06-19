@@ -7,9 +7,8 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +199 pages/submit.tsx
-badd +66 components/Dropdown/dropdown.module.css
-badd +63 components/Dropdown/index.tsx
+badd +265 pages/submit.tsx
+badd +86 styles/Submit.module.css
 argglobal
 %argdel
 edit pages/submit.tsx
@@ -18,20 +17,13 @@ wincmd _ | wincmd |
 vsplit
 1wincmd h
 wincmd w
-wincmd _ | wincmd |
-split
-1wincmd k
-wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe '2resize ' . ((&lines * 22 + 24) / 49)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
-exe '3resize ' . ((&lines * 23 + 24) / 49)
-exe 'vert 3resize ' . ((&columns * 119 + 119) / 239)
 argglobal
 setlocal fdm=indent
 setlocal fde=0
@@ -43,123 +35,62 @@ setlocal fdn=20
 setlocal fen
 22
 normal! zo
-35
-normal! zo
-38
-normal! zo
 51
 normal! zo
 52
 normal! zo
 54
 normal! zo
-55
-normal! zo
 103
-normal! zo
-112
-normal! zo
-113
-normal! zo
-119
-normal! zo
-131
-normal! zo
-145
-normal! zo
-148
-normal! zo
-149
-normal! zo
-156
-normal! zo
-157
-normal! zo
-164
-normal! zo
-188
-normal! zo
-199
-normal! zo
-213
-normal! zo
-215
-normal! zo
-230
-normal! zo
-244
 normal! zo
 256
 normal! zo
-265
+266
 normal! zo
-267
+269
 normal! zo
-282
+278
 normal! zo
-296
+280
 normal! zo
-305
+295
 normal! zo
-let s:l = 177 - ((32 * winheight(0) + 23) / 46)
+309
+normal! zo
+318
+normal! zo
+let s:l = 269 - ((34 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-177
-normal! 0
+269
+normal! 036|
 wincmd w
 argglobal
-if bufexists("components/Dropdown/index.tsx") | buffer components/Dropdown/index.tsx | else | edit components/Dropdown/index.tsx | endif
+if bufexists("styles/Submit.module.css") | buffer styles/Submit.module.css | else | edit styles/Submit.module.css | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=8
+setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-31
-normal! zo
-52
-normal! zo
-53
-normal! zo
-54
-normal! zo
-62
-normal! zo
 63
 normal! zo
-let s:l = 66 - ((17 * winheight(0) + 11) / 22)
+71
+normal! zo
+86
+normal! zo
+let s:l = 86 - ((57 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-66
-normal! 011|
+86
+normal! 023|
 wincmd w
-argglobal
-if bufexists("components/Dropdown/dropdown.module.css") | buffer components/Dropdown/dropdown.module.css | else | edit components/Dropdown/dropdown.module.css | endif
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=11
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-let s:l = 66 - ((12 * winheight(0) + 11) / 23)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-66
-normal! 015|
-wincmd w
-3wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe '2resize ' . ((&lines * 22 + 24) / 49)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
-exe '3resize ' . ((&lines * 23 + 24) / 49)
-exe 'vert 3resize ' . ((&columns * 119 + 119) / 239)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

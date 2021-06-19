@@ -254,11 +254,24 @@ export default function Submit() {
           {/* eslint-disable-next-line */}
           <label htmlFor="logo">
             <span>Company Logo</span>
-            <FileUpload
-              className={classes.file_upload}
-              onUpload={(uri: string) => setCompanyLogoUri(uri)}
-            />
+            {!companyLogoUri && (
+              <FileUpload
+                className={classes.file_upload}
+                onUpload={(uri: string) => setCompanyLogoUri(uri)}
+              />
+            )}
             <input type="hidden" name="company-logo" value={companyLogoUri} />
+
+            {companyLogoUri && (
+              <div
+                className={`${classes.file_upload} ${classes.clear_selected_file}`}
+              >
+                <span>Logo Selected!</span>
+                <button type="button" onClick={() => setCompanyLogoUri('')}>
+                  ✕
+                </button>
+              </div>
+            )}
           </label>
 
           <div className={classes.row}>

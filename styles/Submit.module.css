@@ -58,3 +58,30 @@
   background-color: var(--background_input);
   border-radius: var(--border-radius);
 }
+
+.clear_selected_file {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+.clear_selected_file > button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2rem;
+  max-width: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
+  padding: 0;
+  color: var(--foreground);
+  background-color: var(--background);
+  border: none;
+  border-radius: 50%;
+}
+
+.clear_selected_file > button:hover {
+  background-color: red;
+}
