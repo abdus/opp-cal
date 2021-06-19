@@ -7,7 +7,6 @@ import { EmailSubscription } from '../components/EmailSubscription';
 import { ProfileCard } from '../components/ProfileCard';
 import { Calender } from '../components/Calender';
 
-
 // eslint-disable-next-line
 export default function Home() {
   return (

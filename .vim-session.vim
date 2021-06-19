@@ -7,18 +7,19 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +37 ~/Dev/personal/opp-cal__personal/components/FileUpload/index.tsx
-badd +55 ~/Dev/personal/opp-cal__personal/components/FileUpload/file-upload.module.css
-badd +1 components/Dropdown/dropdown.module.css
+badd +1 pages/calendar.tsx
+badd +44 components/Calender/index.tsx
+badd +0 components/Calender/calender.module.css
 argglobal
 %argdel
-edit components/Dropdown/dropdown.module.css
+edit pages/calendar.tsx
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
+1wincmd h
 wincmd _ | wincmd |
-vsplit
-2wincmd h
+split
+1wincmd k
 wincmd w
 wincmd w
 wincmd t
@@ -26,52 +27,52 @@ set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 79 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 79 + 119) / 239)
-exe 'vert 3resize ' . ((&columns * 79 + 119) / 239)
+exe '1resize ' . ((&lines * 22 + 24) / 49)
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
+exe '2resize ' . ((&lines * 23 + 24) / 49)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
+exe 'vert 3resize ' . ((&columns * 119 + 119) / 239)
 argglobal
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=4
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-63
+12
 normal! zo
-let s:l = 63 - ((62 * winheight(0) + 23) / 46)
+13
+normal! zo
+14
+normal! zo
+let s:l = 16 - ((15 * winheight(0) + 11) / 22)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-63
-normal! 0
+16
+normal! 019|
 wincmd w
 argglobal
-if bufexists("~/Dev/personal/opp-cal__personal/components/FileUpload/file-upload.module.css") | buffer ~/Dev/personal/opp-cal__personal/components/FileUpload/file-upload.module.css | else | edit ~/Dev/personal/opp-cal__personal/components/FileUpload/file-upload.module.css | endif
+if bufexists("components/Calender/calender.module.css") | buffer components/Calender/calender.module.css | else | edit components/Calender/calender.module.css | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=0
+setlocal fdl=1
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-21
-normal! zo
-33
-normal! zo
-37
-normal! zo
-let s:l = 40 - ((30 * winheight(0) + 23) / 46)
+let s:l = 40 - ((15 * winheight(0) + 11) / 23)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
 40
-normal! 03|
+normal! 04|
 wincmd w
 argglobal
-if bufexists("~/Dev/personal/opp-cal__personal/components/FileUpload/index.tsx") | buffer ~/Dev/personal/opp-cal__personal/components/FileUpload/index.tsx | else | edit ~/Dev/personal/opp-cal__personal/components/FileUpload/index.tsx | endif
+if bufexists("components/Calender/index.tsx") | buffer components/Calender/index.tsx | else | edit components/Calender/index.tsx | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -80,33 +81,33 @@ setlocal fdl=8
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-14
+37
 normal! zo
-19
+47
 normal! zo
-31
+48
 normal! zo
 49
 normal! zo
-50
+51
 normal! zo
-52
+54
 normal! zo
-53
+60
 normal! zo
-67
-normal! zo
-let s:l = 27 - ((18 * winheight(0) + 23) / 46)
+let s:l = 36 - ((10 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-27
-normal! 020|
+36
+normal! 041|
 wincmd w
 3wincmd w
-exe 'vert 1resize ' . ((&columns * 79 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 79 + 119) / 239)
-exe 'vert 3resize ' . ((&columns * 79 + 119) / 239)
+exe '1resize ' . ((&lines * 22 + 24) / 49)
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
+exe '2resize ' . ((&lines * 23 + 24) / 49)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
+exe 'vert 3resize ' . ((&columns * 119 + 119) / 239)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

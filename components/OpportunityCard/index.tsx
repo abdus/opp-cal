@@ -2,6 +2,7 @@ import React from 'react';
 import { Loader } from '../Loader';
 import { StopEventPropagation } from '../StopEventPropagation';
 import classes from './opportunity-card.module.css';
+import { generateComponentKey } from '../../utils/generateComponentKey';
 
 function isLast3Days(date: Date): boolean {
   const now = new Date();
@@ -17,10 +18,12 @@ type PropType = {
   description: string;
   type: string;
   lastDate: Date;
+  apply: string;
 };
 
 export function OpportunityCard(props: PropType) {
   const imgRef = React.createRef<HTMLImageElement>();
+  const generateKey = generateComponentKey();
 
   const [showDesc, setShowDesc] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
@@ -65,49 +68,68 @@ export function OpportunityCard(props: PropType) {
       </div>
 
       <div className={classes.meta}>
-        <StopEventPropagation inline>
-          <small
-            title={isLast3Days(props.lastDate) ? 'Deadline Close!' : 'Deadline'}
-            style={{
-              backgroundColor: isLast3Days(props.lastDate)
-                ? '#741515'
-                : undefined,
-              color: isLast3Days(props.lastDate) ? '#fff' : undefined,
-            }}
-          >
-            {`📅 ${props.lastDate.toLocaleDateString()}`}
-          </small>
-        </StopEventPropagation>
+        {props.lastDate && new Date(props.lastDate) && (
+          <StopEventPropagation inline>
+            <small
+              title={
+                isLast3Days(props.lastDate) ? 'Deadline Close!' : 'Deadline'
+              }
+              style={{
+                backgroundColor: isLast3Days(props.lastDate)
+                  ? '#741515'
+                  : undefined,
+                color: isLast3Days(props.lastDate) ? '#fff' : undefined,
+              }}
+            >
+              {`📅 ${props.lastDate.toLocaleDateString()}`}
+            </small>
+          </StopEventPropagation>
+        )}
 
-        <StopEventPropagation inline>
-          <small>{`🌍 ${props.location}`}</small>
-        </StopEventPropagation>
+        {props.location && (
+          <StopEventPropagation inline>
+            <small>{`🌍 ${props.location}`}</small>
+          </StopEventPropagation>
+        )}
 
-        <StopEventPropagation inline>
-          <small>{`📚 ${props.eligibility}`}</small>
-        </StopEventPropagation>
+        {props.eligibility && (
+          <StopEventPropagation inline>
+            <small>{`📚 ${props.eligibility}`}</small>
+          </StopEventPropagation>
+        )}
 
-        <StopEventPropagation inline>
-          <small style={{ background: 'lightblue', color: '#000' }}>
-            {`😎 ${props.type.toLowerCase()}`}
-          </small>
-        </StopEventPropagation>
+        {props.type && (
+          <StopEventPropagation inline>
+            <small style={{ background: 'lightblue', color: '#000' }}>
+              {`😎 ${props.type.toLowerCase()}`}
+            </small>
+          </StopEventPropagation>
+        )}
       </div>
 
       {showDesc && (
-        <div className={classes.desc}>
-          {props.description}
+        <StopEventPropagation>
+          <div className={classes.desc}>
+            {props.description.split('\\n').map((sentance) => (
+              <React.Fragment key={generateKey.next().value || ''}>
+                {sentance}
+                <br />
+                {console.log(generateKey.next().value)}
+              </React.Fragment>
+            ))}
 
-          <div className={classes.apply}>
-            <button
-              className="gradient"
-              onClick={(e) => e.stopPropagation()}
-              type="button"
+            <a
+              className={classes.apply}
+              href={props.apply}
+              target="_blank"
+              rel="noreferrer"
             >
-              APPLY
-            </button>
+              <button className="gradient" type="button">
+                APPLY
+              </button>
+            </a>
           </div>
-        </div>
+        </StopEventPropagation>
       )}
     </div>
   );

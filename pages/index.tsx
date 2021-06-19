@@ -11,9 +11,11 @@ import { ProfileCard } from '../components/ProfileCard';
 import { supabase } from '../utils/supabase';
 import { throttle } from '../utils/throttle';
 import { definitions } from '../types/supabase-types';
+import { generateComponentKey } from '../utils/generateComponentKey';
 
 // eslint-disable-next-line
 export default function Home() {
+  const generateKey = generateComponentKey();
   const [searchText, setSearchText] = React.useState('');
   const [opportunities, setOpportunities] = React.useState<
   definitions['opportunities'][]
@@ -42,6 +44,7 @@ export default function Home() {
             ?.reverse()
             ?.map((opp) => (
               <OpportunityCard
+                key={generateKey.next().value || ''}
                 oppTitle={opp.opp_name}
                 logoURL={opp.company_logo_url || '#'}
                 location={opp.location}
@@ -50,6 +53,7 @@ export default function Home() {
                 organisation={opp.company_name || ''}
                 type={opp.type || 'Full-Time'}
                 lastDate={new Date(opp.opp_deadline)}
+                apply={opp.apply_at}
               />
             ))}
 

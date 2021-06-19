@@ -82,7 +82,10 @@ export default function Submit() {
                   formData.get('last-date'),
                   validators.fnValidateString,
                 ),
-                opp_description: formData.get('description')?.toString(),
+                opp_description: formData
+                  .get('description')
+                  ?.toString()
+                  .replace(/\n/g, '\\n'),
                 company_logo_url: formData.get('company-logo')?.toString(),
               };
 
@@ -232,7 +235,7 @@ export default function Submit() {
             </label>
           </div>
 
-          <div className={classes.row}>
+          <div className={`${classes.row} ${classes.submit_reset_btn}`}>
             {/* eslint-disable-next-line */}
             <button type="reset">RESET</button>
             <button className="gradient" type="submit">

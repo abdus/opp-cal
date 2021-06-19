@@ -16,6 +16,21 @@ const months = [
   'dec',
 ];
 
+const colors = [
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'pink',
+  'purple',
+  'red',
+  'green',
+  'yellow',
+  'blue',
+  'pink',
+  'purple',
+];
+
 type PropType = {};
 
 export function Calender(props: PropType) {
@@ -24,9 +39,9 @@ export function Calender(props: PropType) {
   const HOUR_IN_SEC = 60 * MIN_IN_SEC;
   const DAY_IN_SEC = 24 * HOUR_IN_SEC;
   const DAY_IN_MILI = DAY_IN_SEC * 1000;
-  const THREE_MONTHS = 3 * 30 * DAY_IN_MILI;
+  // const THREE_MONTHS = 3 * 30 * DAY_IN_MILI;
 
-  let today = Date.now() - THREE_MONTHS;
+  let today = Date.now() - DAY_IN_MILI;
 
   return (
     <div className={classes.container}>
@@ -40,10 +55,11 @@ export function Calender(props: PropType) {
               className={classes.cell}
               key={today}
               id={`${dt.getDate()}${dt.getMonth()}${dt.getFullYear()}`}
+              style={{ backgroundColor: colors[dt.getMonth()] }}
             >
               <span className={classes.date}>{dt.getDate()}</span>
               <small>
-                {months[dt.getMonth() + 1]}
+                {months[dt.getMonth()]}
                 {', '}
                 {dt.getFullYear()}
               </small>
