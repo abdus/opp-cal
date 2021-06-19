@@ -60,7 +60,7 @@ export function Dropdown(props: PropType) {
         />
       ) : (
         <div className={classes.selected}>
-          {selected.label}
+          <span>{selected.label}</span>
           <button
             className={classes.clear_selected}
             type="button"
@@ -98,4 +98,4 @@ export function Dropdown(props: PropType) {
 // default props...
 Dropdown.defaultProps = {
   onFilterTextChange: () => {},
-}
+};

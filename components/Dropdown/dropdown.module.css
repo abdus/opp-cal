@@ -59,12 +59,21 @@
   border-radius: var(--border-radius);
 }
 
+.selected > span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 70vw;
+}
+
 button.clear_selected {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2rem;
-  height: 2rem;
+  min-width: 2rem;
+  max-width: 2rem;
+  min-height: 2rem;
+  max-height: 2rem;
   padding: 0;
   background-color: var(--background);
   border-radius: 50%;

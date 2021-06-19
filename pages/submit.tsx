@@ -25,7 +25,7 @@ export default function Submit() {
   const insertOppToDb = useInsertIntoDB<definitions['opportunities']>();
 
   const [companyLogoUri, setCompanyLogoUri] = React.useState<string>('');
-  const [opportunityType, setOpportunityType] = React.useState<string>();
+  const [opportunityType, setOpportunityType] = React.useState<string>('');
   const [selectedLocation, setSelectedLocation] = React.useState<string>('');
   const [suggestedLocations, setSuggestedLocations] = React.useState<
   { label: React.ReactNode; value: string }[]
@@ -116,7 +116,7 @@ export default function Submit() {
               </span>
 
               <Dropdown
-                onChange={(data) => setOpportunityType(data?.value)}
+                onChange={(data) => setOpportunityType(data?.value || '')}
                 data={[
                   { label: 'Full Time', value: 'FULLTIME' },
                   { label: 'Part Time', value: 'PARTTIME' },
@@ -155,7 +155,7 @@ export default function Submit() {
                     /* eslint-disable */
                       filterText &&
                         ddData.push({
-                          label: `Enter '${filterText}`,
+                          label: filterText,
                           value: filterText,
                         });
                       /* eslint-enable */
@@ -189,7 +189,7 @@ export default function Submit() {
                       { label: filterText, value: filterText },
                     ]);
                   }
-                }, 500 /* throttle at 0.5s */)}
+                }, 400 /* throttle at 0.4s */)}
               />
             </label>
           </div>
