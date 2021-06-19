@@ -3,6 +3,7 @@ import { Loader } from '../Loader';
 import { StopEventPropagation } from '../StopEventPropagation';
 import classes from './opportunity-card.module.css';
 import { generateComponentKey } from '../../utils/generateComponentKey';
+import { Image } from '../Image';
 
 function isLast3Days(date: Date): boolean {
   const now = new Date();
@@ -10,6 +11,7 @@ function isLast3Days(date: Date): boolean {
 }
 
 type PropType = {
+  id: string;
   oppTitle: string;
   organisation: string;
   logoURL: string;
@@ -22,17 +24,10 @@ type PropType = {
 };
 
 export function OpportunityCard(props: PropType) {
-  const imgRef = React.createRef<HTMLImageElement>();
   const generateKey = generateComponentKey();
 
   const [showDesc, setShowDesc] = React.useState(false);
   const [imgLoaded, setImgLoaded] = React.useState(false);
-
-  React.useEffect(() => {
-    if (imgRef.current?.complete === true) {
-      setImgLoaded(true);
-    }
-  }, []);
 
   return (
     <div
@@ -43,23 +38,10 @@ export function OpportunityCard(props: PropType) {
       onClick={() => setShowDesc(!showDesc)}
       onKeyDown={(ev) => ev.key === 'Enter' && setShowDesc(!showDesc)}
     >
-      {console.log(props.logoURL)}
       <span className={classes.expand_handler} />
       <div className={classes.header}>
         <div className={classes.image}>
-          <img
-            alt=""
-            ref={imgRef}
-            src={props.logoURL}
-            onLoad={() => {
-              setImgLoaded(true);
-            }}
-            style={{
-              visibility: imgLoaded ? 'visible' : 'hidden',
-              position: imgLoaded ? 'relative' : 'absolute',
-            }}
-          />
-          <Loader style={{ display: imgLoaded ? 'none' : 'block' }} />
+          <Image src={props.logoURL} />
         </div>
         <div className={classes.content}>
           <h3>{props.oppTitle}</h3>
@@ -107,30 +89,39 @@ export function OpportunityCard(props: PropType) {
         )}
       </div>
 
-      {showDesc && (
-        <StopEventPropagation>
-          <div className={classes.desc}>
-            {props.description.split('\\n').map((sentance) => (
-              <React.Fragment key={generateKey.next().value || ''}>
-                {sentance}
-                <br />
-                {console.log(generateKey.next().value)}
-              </React.Fragment>
-            ))}
+      <StopEventPropagation>
+        <div
+          className={`${classes.desc} ${
+            showDesc ? classes.description_expanded : ''
+          }`}
+        >
+          {props.description.split('\\n').map((sentance) => (
+            <React.Fragment key={generateKey.next().value || ''}>
+              {sentance}
+              <br />
+            </React.Fragment>
+          ))}
 
+          <div className={classes.apply}>
             <a
-              className={classes.apply}
+              target="_blank"
+              rel="noreferrer"
+              className="gradient"
+              href={`/view/opp/${props.id}`}
+            >
+              OPEN
+            </a>
+            <a
+              className="gradient"
               href={props.apply}
               target="_blank"
               rel="noreferrer"
             >
-              <button className="gradient" type="button">
-                APPLY
-              </button>
+              APPLY
             </a>
           </div>
-        </StopEventPropagation>
-      )}
+        </div>
+      </StopEventPropagation>
     </div>
   );
 }

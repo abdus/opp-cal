@@ -1,5 +1,7 @@
 import React from 'react';
 import classes from './calender.module.css';
+import { supabase } from '../../utils/supabase';
+import { definitions } from '../../types/supabase-types';
 
 const months = [
   'jan',
@@ -16,21 +18,6 @@ const months = [
   'dec',
 ];
 
-const colors = [
-  'red',
-  'green',
-  'yellow',
-  'blue',
-  'pink',
-  'purple',
-  'red',
-  'green',
-  'yellow',
-  'blue',
-  'pink',
-  'purple',
-];
-
 type PropType = {};
 
 export function Calender(props: PropType) {
@@ -42,6 +29,14 @@ export function Calender(props: PropType) {
   // const THREE_MONTHS = 3 * 30 * DAY_IN_MILI;
 
   let today = Date.now() - DAY_IN_MILI;
+
+  React.useEffect(() => {
+    supabase
+      .from<definitions['opportunities']>('opportunities')
+      .select('author, profiles ( id, full_name, avatar_url )')
+      .gt('opp_deadline', new Date().toISOString())
+      .then(console.log);
+  }, []);
 
   return (
     <div className={classes.container}>
@@ -55,7 +50,6 @@ export function Calender(props: PropType) {
               className={classes.cell}
               key={today}
               id={`${dt.getDate()}${dt.getMonth()}${dt.getFullYear()}`}
-              style={{ backgroundColor: colors[dt.getMonth()] }}
             >
               <span className={classes.date}>{dt.getDate()}</span>
               <small>

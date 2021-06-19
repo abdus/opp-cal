@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.title_and_company h2 {
+  margin: 0;
+}
+
+.title_and_company span {
+  font-size: 1.6em;
+  opacity: 0.6;
+}
+
+.image {
+  min-width: 6rem;
+  max-width: 6rem;
+  margin-right: 1rem;
+}
+
+.image img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  max-height: 100%;
+}

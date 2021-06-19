@@ -7,11 +7,11 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +265 pages/submit.tsx
-badd +86 styles/Submit.module.css
+badd +50 pages/view/opp/\[opp_id].tsx
+badd +19 styles/ViewOpp.module.css
 argglobal
 %argdel
-edit pages/submit.tsx
+edit pages/view/opp/\[opp_id].tsx
 set splitbelow splitright
 wincmd _ | wincmd |
 vsplit
@@ -29,45 +29,37 @@ setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=13
+setlocal fdl=8
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-22
+18
 normal! zo
-51
+27
 normal! zo
-52
+35
 normal! zo
-54
+36
 normal! zo
-103
+38
 normal! zo
-256
+39
 normal! zo
-266
+49
 normal! zo
-269
+50
 normal! zo
-278
+58
 normal! zo
-280
-normal! zo
-295
-normal! zo
-309
-normal! zo
-318
-normal! zo
-let s:l = 269 - ((34 * winheight(0) + 23) / 46)
+let s:l = 50 - ((34 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-269
-normal! 036|
+50
+normal! 062|
 wincmd w
 argglobal
-if bufexists("styles/Submit.module.css") | buffer styles/Submit.module.css | else | edit styles/Submit.module.css | endif
+if bufexists("styles/ViewOpp.module.css") | buffer styles/ViewOpp.module.css | else | edit styles/ViewOpp.module.css | endif
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
@@ -76,18 +68,22 @@ setlocal fdl=0
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-63
+2
 normal! zo
-71
+7
 normal! zo
-86
+11
 normal! zo
-let s:l = 86 - ((57 * winheight(0) + 23) / 46)
+16
+normal! zo
+22
+normal! zo
+let s:l = 12 - ((11 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-86
-normal! 023|
+12
+normal! 03|
 wincmd w
 exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
 exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)

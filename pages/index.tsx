@@ -45,6 +45,7 @@ export default function Home() {
             ?.map((opp) => (
               <OpportunityCard
                 key={generateKey.next().value || ''}
+                id={opp.id}
                 oppTitle={opp.opp_name}
                 logoURL={opp.company_logo_url || '#'}
                 location={opp.location}

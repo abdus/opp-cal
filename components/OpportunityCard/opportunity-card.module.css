@@ -66,9 +66,17 @@
 }
 
 .desc {
+  max-height: 0;
   margin-top: 0.7rem;
+  overflow: hidden;
   line-height: 1.6;
+  transition: 0.3s ease all;
   /*opacity: 0.6;*/
+}
+
+.description_expanded {
+  max-height: 1000px;
+  overflow: auto;
 }
 
 .apply {
@@ -78,6 +86,10 @@
   opacity: 1;
 }
 
-.apply button {
+.apply a {
+  margin: 0.2rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
   font-size: 0.8em;
+  border-radius: var(--border-radius);
 }
