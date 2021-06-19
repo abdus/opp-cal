@@ -104,8 +104,6 @@ export function OpportunityCard(props: PropType) {
 
           <div className={classes.apply}>
             <a
-              target="_blank"
-              rel="noreferrer"
               className="gradient"
               href={`/view/opp/${props.id}`}
             >
