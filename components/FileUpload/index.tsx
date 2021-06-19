@@ -34,6 +34,7 @@ export function FileUpload(props: PropType) {
 
       if (getPublicUriResp.publicURL) {
         props.onUpload(getPublicUriResp.publicURL);
+        setFile(null);
       }
 
       if (getPublicUriResp.error) {
@@ -63,7 +64,7 @@ export function FileUpload(props: PropType) {
           />
         </span>
         <div className={classes.action_btn}>
-          {isUploading && <Loader />}
+          {isUploading && <Loader style={{ minWidth: '1.4rem' }} />}
 
           <button
             disabled={!file}

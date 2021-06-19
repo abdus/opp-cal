@@ -9,6 +9,7 @@ import { Loader } from '../components/Loader';
 import { ProfileCard } from '../components/ProfileCard';
 import { InputField } from '../components/InputField';
 import { FileUpload } from '../components/FileUpload';
+import { Dropdown } from '../components/Dropdown';
 
 import { AuthUserContext } from '../context';
 import { useInsertIntoDB } from '../hooks/useInsertIntoDB';
@@ -20,8 +21,10 @@ export default function Submit() {
   const toast = useToasts();
   const formValidator = useFormValidator();
   const authUser = React.useContext(AuthUserContext);
-  const [companyLogoUri, setCompanyLogoUri] = React.useState<string>();
   const insertOppToDb = useInsertIntoDB<definitions['opportunities']>();
+
+  const [companyLogoUri, setCompanyLogoUri] = React.useState<string>();
+  const [opportunityType, setOpportunityType] = React.useState<string>();
 
   React.useEffect(() => {
     const uid = uuidV4();
@@ -54,6 +57,10 @@ export default function Submit() {
               const opportunityData: definitions['opportunities'] = {
                 author: authUser.id,
                 id: uuidV4(),
+                type: formValidator<string>(
+                  formData.get('opp-type'),
+                  validators.fnValidateString,
+                ),
                 location: formValidator<string>(
                   formData.get('location'),
                   validators.fnValidateString,
@@ -94,18 +101,21 @@ export default function Submit() {
           </p>
 
           <div className={classes.row}>
-            {/* eslint-disable-next-line */}
-            <label htmlFor="last-date">
+            <label htmlFor="opp-type">
               <span>
-                Last Date
+                Opportunity Type
                 <span className={classes.color_red}>*</span>
               </span>
-              <InputField
-                type="date"
-                id="last-date"
-                name="last-date"
-                validator={validators.fnValidateString}
+
+              <Dropdown
+                onChange={(data) => setOpportunityType(data?.value)}
+                data={[
+                  { label: 'Full Time', value: 'FULLTIME' },
+                  { label: 'Part Time', value: 'PARTTIME' },
+                  { label: 'INTERNSHIP', value: 'INTERNSHIP' },
+                ]}
               />
+              <input type="hidden" name="opp-type" value={opportunityType} />
             </label>
 
             {/* eslint-disable-next-line */}
@@ -191,20 +201,36 @@ export default function Submit() {
             <input type="hidden" name="company-logo" value={companyLogoUri} />
           </label>
 
-          {/* eslint-disable-next-line */}
-          <label htmlFor="apply">
-            <span>
-              Apply at
-              <span className={classes.color_red}>*</span>
-            </span>
-            <InputField
-              id="apply"
-              type="text"
-              name="apply-at"
-              placeholder="https://jobs.lever.com/path/to/job"
-              validator={validators.fnValidateString}
-            />
-          </label>
+          <div className={classes.row}>
+            {/* eslint-disable-next-line */}
+            <label htmlFor="apply">
+              <span>
+                Apply at
+                <span className={classes.color_red}>*</span>
+              </span>
+              <InputField
+                id="apply"
+                type="text"
+                name="apply-at"
+                placeholder="https://jobs.lever.com/path/to/job"
+                validator={validators.fnValidateString}
+              />
+            </label>
+
+            {/* eslint-disable-next-line */}
+            <label htmlFor="last-date">
+              <span>
+                Last Date
+                <span className={classes.color_red}>*</span>
+              </span>
+              <InputField
+                type="date"
+                id="last-date"
+                name="last-date"
+                validator={validators.fnValidateString}
+              />
+            </label>
+          </div>
 
           <div className={classes.row}>
             {/* eslint-disable-next-line */}

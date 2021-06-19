@@ -20,13 +20,13 @@
 .filename {
   position: relative;
   width: 100%;
-  max-width: 85%;
   min-width: auto;
+  max-width: 85%;
   height: 100%;
   padding: 0.4rem 1rem;
+  overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
-  overflow: hidden;
 }
 
 .action_btn {
@@ -34,14 +34,15 @@
 }
 
 .action_btn button {
-  display: inline-block;
-  width: unset;
-  margin: 0.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
   padding: 0;
-  padding: 0.1rem 0.4rem;
   color: #fff;
   border: none;
-  border-radius: 100%;
+  border-radius: 50%;
 }
 
 /*.progress {*/

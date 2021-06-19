@@ -38,18 +38,20 @@ export default function Home() {
         <OpportunityFilter onChange={handleFilterChnage} />
 
         {Array.isArray(opportunities)
-          && opportunities?.reverse()?.map((opp) => (
-            <OpportunityCard
-              oppTitle={opp.opp_name}
-              logoURL={opp.company_logo_url || '#'}
-              location={opp.location}
-              description={opp.opp_description || ''}
-              eligibility={opp.eligibility || ''}
-              organisation={opp.company_name || ''}
-              type={opp.type || 'Full-Time'}
-              lastDate={new Date(opp.opp_deadline)}
-            />
-          ))}
+          && opportunities
+            ?.reverse()
+            ?.map((opp) => (
+              <OpportunityCard
+                oppTitle={opp.opp_name}
+                logoURL={opp.company_logo_url || '#'}
+                location={opp.location}
+                description={opp.opp_description || ''}
+                eligibility={opp.eligibility || ''}
+                organisation={opp.company_name || ''}
+                type={opp.type || 'Full-Time'}
+                lastDate={new Date(opp.opp_deadline)}
+              />
+            ))}
 
         <div
           style={{
