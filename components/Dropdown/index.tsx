@@ -23,6 +23,7 @@ function DropdownItem(props: DropdownItemPropType) {
 
 type PropType = {
   onChange(data?: { value: string; label: React.ReactNode }): void;
+  onFilterTextChange?(text: string): void;
   data: { value: string; label: React.ReactNode }[];
 };
 
@@ -37,6 +38,12 @@ export function Dropdown(props: PropType) {
   React.useEffect(() => {
     props.onChange(selected);
   }, [selected]);
+
+  React.useEffect(() => {
+    if (typeof props.onFilterTextChange === 'function') {
+      props.onFilterTextChange(filterText);
+    }
+  }, [filterText]);
 
   // return when no data is present
   if (!Array.isArray(props.data)) return <></>;
@@ -89,3 +96,6 @@ export function Dropdown(props: PropType) {
 }
 
 // default props...
+Dropdown.defaultProps = {
+  onFilterTextChange: () => {},
+}

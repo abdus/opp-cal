@@ -15,6 +15,7 @@ import { AuthUserContext } from '../context';
 import { useInsertIntoDB } from '../hooks/useInsertIntoDB';
 import { definitions } from '../types/supabase-types';
 import { useFormValidator, validators } from '../hooks/useFormValidator';
+import { throttle } from '../utils/throttle';
 
 // eslint-disable-next-line
 export default function Submit() {
@@ -23,8 +24,12 @@ export default function Submit() {
   const authUser = React.useContext(AuthUserContext);
   const insertOppToDb = useInsertIntoDB<definitions['opportunities']>();
 
-  const [companyLogoUri, setCompanyLogoUri] = React.useState<string>();
+  const [companyLogoUri, setCompanyLogoUri] = React.useState<string>('');
   const [opportunityType, setOpportunityType] = React.useState<string>();
+  const [selectedLocation, setSelectedLocation] = React.useState<string>('');
+  const [suggestedLocations, setSuggestedLocations] = React.useState<
+  { label: React.ReactNode; value: string }[]
+  >([{ label: '', value: '' }]);
 
   React.useEffect(() => {
     const uid = uuidV4();
@@ -48,7 +53,7 @@ export default function Submit() {
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <form
           className={classes.form}
-          onReset={() => setCompanyLogoUri(undefined)}
+          onReset={() => setCompanyLogoUri('')}
           onSubmit={(ev) => {
             ev.preventDefault();
 
@@ -128,11 +133,63 @@ export default function Submit() {
                 <span className={classes.color_red}>*</span>
               </span>
               <InputField
-                type="text"
+                type="hidden"
                 id="location"
                 name="location"
+                value={selectedLocation}
                 placeholder="Mumbai, Maharashtra"
                 validator={validators.fnValidateString}
+              />
+
+              <Dropdown
+                data={suggestedLocations}
+                onChange={(data) => setSelectedLocation(data?.value || '')}
+                onFilterTextChange={(filterText) => throttle(async () => {
+                  try {
+                    const raw = await fetch(
+                      `/api/get-location-autocomplete?search=${filterText}`,
+                    );
+                    const json = await raw.json();
+                    const ddData = [];
+
+                    /* eslint-disable */
+                      filterText &&
+                        ddData.push({
+                          label: `Enter '${filterText}`,
+                          value: filterText,
+                        });
+                      /* eslint-enable */
+
+                    for (let i = 0; i < json?.suggestions?.length; i += 1) {
+                      const place = json?.suggestions[i];
+                      const fullAddr: string[] = [];
+                      const addr = place.address;
+
+                      /* eslint-disable */
+                        addr.street && fullAddr.push(addr.street);
+                        addr.county && fullAddr.push(addr.county);
+                        addr.city && fullAddr.push(addr.city);
+                        addr.district && fullAddr.push(addr.district);
+                        addr.state && fullAddr.push(addr.state);
+                        addr.country && fullAddr.push(addr.country);
+                        addr.postalCode && fullAddr.push(addr.postalCode);
+                        /* eslint-enable */
+
+                      const tmp = {
+                        label: fullAddr.join(', ').replace(/<\/?b>/gi, ''),
+                        value: fullAddr.join(', ').replace(/<\/?b>/gi, ''),
+                      };
+
+                      ddData.push(tmp);
+                    }
+
+                    setSuggestedLocations(ddData);
+                  } catch (err) {
+                    setSuggestedLocations([
+                      { label: filterText, value: filterText },
+                    ]);
+                  }
+                }, 500 /* throttle at 0.5s */)}
               />
             </label>
           </div>
