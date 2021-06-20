@@ -35,7 +35,7 @@ function mapOppToDate(opportunities: definitions['opportunities'][]) {
     const opp = opportunities[i];
     const dtString = new Date(opp.opp_deadline).toDateString();
 
-    if (!Array.isArray(finalData[opp.opp_deadline])) {
+    if (!Array.isArray(finalData[dtString])) {
       finalData[dtString] = [];
     }
 
@@ -49,7 +49,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const resp = await supabase
     .from<definitions['opportunities']>('opportunities')
     .select('*')
-    .gte('opp_deadline', new Date().toISOString());
+    .gte('opp_deadline', new Date().toISOString())
+    .order('updated_at', { ascending: false });
 
   return {
     props: {
