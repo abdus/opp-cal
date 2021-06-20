@@ -7,10 +7,10 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +0 pages/index.tsx
+badd +108 components/OpportunityCard/index.tsx
 argglobal
 %argdel
-edit pages/index.tsx
+edit components/OpportunityCard/index.tsx
 set splitbelow splitright
 wincmd t
 set winminheight=0
@@ -22,16 +22,32 @@ setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=7
+setlocal fdl=9
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-let s:l = 48 - ((38 * winheight(0) + 23) / 46)
+27
+normal! zo
+33
+normal! zo
+41
+normal! zo
+53
+normal! zo
+93
+normal! zo
+98
+normal! zo
+106
+normal! zo
+107
+normal! zo
+let s:l = 71 - ((0 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-48
-normal! 09|
+71
+normal! 016|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

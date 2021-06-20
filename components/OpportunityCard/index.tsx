@@ -105,7 +105,10 @@ export function OpportunityCard(props: PropType) {
           <div className={classes.apply}>
             <a
               className="gradient"
-              href={`/view/opp/${props.id}`}
+              href={`/view/${props.oppTitle?.replace(
+                / /gi,
+                '-',
+              )}-${props.organisation?.replace(/ /gi, '-')}/${props.id}`}
             >
               OPEN
             </a>
