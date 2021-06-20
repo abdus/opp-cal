@@ -45,8 +45,6 @@ export default function Home(props: PropType) {
     <>
       <ThemeSwitcher />
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
-        <h2>Latest Opportunities</h2>
-
         <OpportunityFilter
           onChange={handleFilterChnage}
           onFocus={() => setShouldSearch(true)}

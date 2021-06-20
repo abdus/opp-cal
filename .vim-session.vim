@@ -7,98 +7,31 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +52 ~/Dev/personal/opp-cal__personal/components/Calendar/index.tsx
-badd +78 ~/Dev/personal/opp-cal__personal/components/Calendar/calendar.module.css
+badd +0 pages/index.tsx
 argglobal
 %argdel
-edit ~/Dev/personal/opp-cal__personal/components/Calendar/index.tsx
+edit pages/index.tsx
 set splitbelow splitright
-wincmd _ | wincmd |
-vsplit
-1wincmd h
-wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
 argglobal
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=11
+setlocal fdl=7
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-30
-normal! zo
-45
-normal! zo
-46
-normal! zo
-51
-normal! zo
-52
-normal! zo
-53
-normal! zo
-62
-normal! zo
-63
-normal! zo
-65
-normal! zo
-70
-normal! zo
-71
-normal! zo
-78
-normal! zo
-85
-normal! zo
-91
-normal! zo
-92
-normal! zo
-93
-normal! zo
-let s:l = 52 - ((36 * winheight(0) + 23) / 46)
+let s:l = 48 - ((38 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-52
-normal! 056|
-wincmd w
-argglobal
-if bufexists("~/Dev/personal/opp-cal__personal/components/Calendar/calendar.module.css") | buffer ~/Dev/personal/opp-cal__personal/components/Calendar/calendar.module.css | else | edit ~/Dev/personal/opp-cal__personal/components/Calendar/calendar.module.css | endif
-setlocal fdm=indent
-setlocal fde=0
-setlocal fmr={{{,}}}
-setlocal fdi=#
-setlocal fdl=0
-setlocal fml=1
-setlocal fdn=20
-setlocal fen
-73
-normal! zo
-78
-normal! zo
-82
-normal! zo
-86
-normal! zo
-let s:l = 78 - ((77 * winheight(0) + 23) / 46)
-if s:l < 1 | let s:l = 1 | endif
-exe s:l
-normal! zt
-78
-normal! 017|
-wincmd w
-exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
-exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
+48
+normal! 09|
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
