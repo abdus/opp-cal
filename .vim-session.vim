@@ -7,47 +7,80 @@ if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
 set shortmess=aoO
-badd +108 components/OpportunityCard/index.tsx
+badd +38 pages/calendar.tsx
+badd +89 pages/index.tsx
 argglobal
 %argdel
-edit components/OpportunityCard/index.tsx
+edit pages/calendar.tsx
 set splitbelow splitright
+wincmd _ | wincmd |
+vsplit
+1wincmd h
+wincmd w
 wincmd t
 set winminheight=0
 set winheight=1
 set winminwidth=0
 set winwidth=1
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
 argglobal
 setlocal fdm=indent
 setlocal fde=0
 setlocal fmr={{{,}}}
 setlocal fdi=#
-setlocal fdl=9
+setlocal fdl=4
 setlocal fml=1
 setlocal fdn=20
 setlocal fen
-27
+21
 normal! zo
-33
+22
 normal! zo
-41
+23
 normal! zo
-53
+32
 normal! zo
-93
+35
 normal! zo
-98
+49
 normal! zo
-106
+56
 normal! zo
-107
-normal! zo
-let s:l = 71 - ((0 * winheight(0) + 23) / 46)
+let s:l = 38 - ((22 * winheight(0) + 23) / 46)
 if s:l < 1 | let s:l = 1 | endif
 exe s:l
 normal! zt
-71
-normal! 016|
+38
+normal! 042|
+wincmd w
+argglobal
+if bufexists("pages/index.tsx") | buffer pages/index.tsx | else | edit pages/index.tsx | endif
+setlocal fdm=indent
+setlocal fde=0
+setlocal fmr={{{,}}}
+setlocal fdi=#
+setlocal fdl=0
+setlocal fml=1
+setlocal fdn=20
+setlocal fen
+86
+normal! zo
+87
+normal! zo
+93
+normal! zo
+94
+normal! zo
+let s:l = 94 - ((93 * winheight(0) + 23) / 46)
+if s:l < 1 | let s:l = 1 | endif
+exe s:l
+normal! zt
+94
+normal! 030|
+wincmd w
+exe 'vert 1resize ' . ((&columns * 119 + 119) / 239)
+exe 'vert 2resize ' . ((&columns * 119 + 119) / 239)
 tabnext 1
 if exists('s:wipebuf') && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

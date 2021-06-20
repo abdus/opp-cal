@@ -86,11 +86,12 @@ export const getServerSideProps: GetServerSideProps = async () => {
   const resp = await supabase
     .from<definitions['opportunities']>('opportunities')
     .select('*')
-    .gte('opp_deadline', new Date().toISOString());
+    .gte('opp_deadline', new Date().toISOString())
+    .order('updated_at', { ascending: false });
 
   return {
     props: {
-      opportunities: resp.data?.reverse(),
+      opportunities: resp.data,
     },
   };
 };
