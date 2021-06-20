@@ -3,6 +3,7 @@ import React from 'react';
 
 type PropType = {
   onChange?(value: string): void;
+  onFocus?(): void;
 };
 
 export function OpportunityFilter(props: PropType) {
@@ -21,6 +22,11 @@ export function OpportunityFilter(props: PropType) {
         type="search"
         name=""
         placeholder="search..."
+        onFocus={() => {
+          if (typeof props.onFocus === 'function') {
+            props.onFocus();
+          }
+        }}
         onChange={(ev) => {
           if (typeof props.onChange === 'function') {
             props.onChange(ev.target.value);
@@ -33,4 +39,5 @@ export function OpportunityFilter(props: PropType) {
 
 OpportunityFilter.defaultProps = {
   onChange: () => {},
+  onFocus: () => {},
 };

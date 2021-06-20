@@ -1,35 +1,29 @@
 import React from 'react';
-import { useRouter } from 'next/router';
-import classes from '../../../styles/ViewOpp.module.css';
-import { Layout } from '../../../components/Layout';
-import { ThemeSwitcher } from '../../../components/ThemeSwitcher';
-import { EmailSubscription } from '../../../components/EmailSubscription';
-import { Loader } from '../../../components/Loader';
-import { ProfileCard } from '../../../components/ProfileCard';
-import { Image } from '../../../components/Image';
+import { GetServerSideProps } from 'next';
+import { Layout } from '@/components/Layout';
+import { ThemeSwitcher } from '@/components/ThemeSwitcher';
+import { EmailSubscription } from '@/components/EmailSubscription';
+import { Loader } from '@/components/Loader';
+import { ProfileCard } from '@/components/ProfileCard';
+import { Image } from '@/components/Image';
 
-import { supabase } from '../../../utils/supabase';
-import { definitions } from '../../../types/supabase-types';
-import { generateComponentKey } from '../../../utils/generateComponentKey';
-// import { throttle } from '../utils/throttle';
+import { definitions } from '@/types/supabase-types';
+import { supabase } from '@/utils/supabase';
+import { generateComponentKey } from '@/utils/generateComponentKey';
+
+import classes from '@/pageStyles/ViewOpp.module.css';
+
+type PropType = {
+  opportunity: definitions['opportunities'][];
+};
 
 // eslint-disable-next-line
-export default function ViewOpp() {
+export default function ViewOpp(props: PropType) {
   const generateKey = generateComponentKey();
-  const router = useRouter();
-  const opportunityId = router.query.opp_id;
 
-  const [opportunity, setOpportunity] = React.useState<
-  definitions['opportunities']
-  >();
-
-  React.useEffect(() => {
-    supabase
-      .from<definitions['opportunities']>('opportunities')
-      .select('*')
-      .eq('id', Array.isArray(opportunityId) ? opportunityId[0] : opportunityId)
-      .then((resp) => (resp.data ? setOpportunity(resp.data[0]) : undefined));
-  }, [opportunityId]);
+  const [opportunity] = React.useState(
+    props.opportunity?.length > 0 ? props.opportunity[0] : undefined,
+  );
 
   return (
     <>
@@ -68,3 +62,18 @@ export default function ViewOpp() {
     </>
   );
 }
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const oppId = context.query.opp_id;
+
+  const resp = await supabase
+    .from<definitions['opportunities']>('opportunities')
+    .select('*')
+    .eq('id', Array.isArray(oppId) ? oppId[0] : oppId);
+
+  return {
+    props: {
+      opportunity: resp.data,
+    },
+  };
+};
