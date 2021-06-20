@@ -1,0 +1,87 @@
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  user-select: none;
+}
+
+.container .cell {
+  position: relative;
+  width: 7rem;
+  height: 7rem;
+  padding: 0.3rem;
+  color: var(--background_input);
+  border: 1px solid var(--background_input);
+}
+
+.cell.cell_have_opp {
+  color: var(--background);
+  background-color: var(--foreground);
+}
+
+.cell small,
+.cell span.date {
+  position: absolute;
+  top: 0.2rem;
+  right: 0.3rem;
+  text-transform: uppercase;
+}
+
+.cell span.date {
+  top: 0;
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  font-size: 2em;
+}
+
+.opp_available_wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: baseline;
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  border: none;
+  border-radius: 0;
+  transform: rotate(180deg);
+}
+
+.opp_available_wrapper:hover {
+  background-color: transparent;
+}
+
+.opp_available_indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 2px;
+  color: var(--background);
+  background-color: var(--background);
+  border: none;
+  border-radius: 100%;
+}
+
+.selected_opportunity_listing {
+  padding: 1rem;
+  cursor: pointer;
+}
+
+.selected_opportunity_listing:not(:first-child) {
+  padding-top: 0;
+}
+
+.selected_opportunity_listing h3 {
+  margin: 0;
+}
+
+.selected_opportunity_listing strong {
+  opacity: 0.7;
+}
