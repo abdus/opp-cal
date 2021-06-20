@@ -13,6 +13,12 @@ import { generateComponentKey } from '@/utils/generateComponentKey';
 
 import classes from '@/pageStyles/ViewOpp.module.css';
 
+import { LoadSvg } from '@/components/LoadSvg';
+import graduationCapIcon from '../../../icons/graduation-cap.svg';
+import calendarIcon from '../../../icons/calendar.svg';
+import locationIcon from '../../../icons/location.svg';
+import crosshairIcon from '../../../icons/crosshair.svg';
+
 type PropType = {
   opportunity: definitions['opportunities'][];
 };
@@ -39,7 +45,60 @@ export default function ViewOpp(props: PropType) {
           </div>
         </header>
 
-        <div>
+        <div className={classes.meta}>
+          {opportunity?.eligibility && (
+            <div className={classes.meta_item}>
+              <LoadSvg
+                className={classes.icon}
+                svg={graduationCapIcon}
+                strokeColor="var(--foreground)"
+                strokeWidth={1}
+              />
+              <small className={classes.text}>{opportunity?.eligibility}</small>
+            </div>
+          )}
+
+          {opportunity?.opp_deadline && (
+            <div className={classes.meta_item}>
+              <LoadSvg
+                className={classes.icon}
+                svg={calendarIcon}
+                strokeColor="var(--foreground)"
+                strokeWidth={1}
+              />
+              <small className={classes.text}>
+                {new Date(opportunity?.opp_deadline).toLocaleDateString()}
+              </small>
+            </div>
+          )}
+
+          {opportunity?.location && (
+            <div className={classes.meta_item}>
+              <LoadSvg
+                className={classes.icon}
+                svg={locationIcon}
+                fillColor="var(--foreground)"
+                strokeWidth={1}
+              />
+              <small className={classes.text}>{opportunity.location}</small>
+            </div>
+          )}
+
+          {opportunity?.type && (
+            <div className={classes.meta_item}>
+              <LoadSvg
+                className={classes.icon}
+                svg={crosshairIcon}
+                fillColor="var(--foreground)"
+                strokeWidth={1}
+                opacity={0.6}
+              />
+              <small className={classes.text}>{opportunity?.type}</small>
+            </div>
+          )}
+        </div>
+
+        <div className={classes.description}>
           {opportunity?.opp_description?.split('\\n').map((sentance) => (
             <React.Fragment key={generateKey.next().value || ''}>
               {sentance}
