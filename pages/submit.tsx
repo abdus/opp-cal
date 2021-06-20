@@ -65,27 +65,33 @@ export default function Submit() {
                 type: formValidator<string>(
                   formData.get('opp-type'),
                   validators.fnValidateString,
+                  'opp-submit.type',
                 ),
                 location: formValidator<string>(
                   formData.get('location'),
                   validators.fnValidateString,
+                  'opp-submit.location',
                 ),
                 opp_name: formValidator(
                   formData.get('opportunity-title'),
                   validators.fnValidateString,
+                  'opp-submit.title',
                 ),
                 company_name: formValidator(
                   formData.get('company-name'),
                   validators.fnValidateString,
+                  'opp-submit.company-name',
                 ),
                 apply_at: formValidator(
                   formData.get('apply-at'),
                   validators.fnValidateString,
+                  'opp-submit.apply-at',
                 ),
                 eligibility: formData.get('eligibility')?.toString(),
                 opp_deadline: formValidator(
                   formData.get('last-date'),
                   validators.fnValidateString,
+                  'opp-submit.last-date',
                 ),
                 opp_description: formData
                   .get('description')
