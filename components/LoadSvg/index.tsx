@@ -13,12 +13,13 @@ type PropType = {
 };
 
 export function LoadSvg(props: PropType) {
+  const dp = LoadSvg.defaultProps;
   const finalSvg = props.svg
-    ?.replace('%SVG_FILL%', props.fillColor)
-    .replace('%SVG_STROKE%', props.strokeColor)
-    .replace('%SVG_STROKE_WIDTH%', props.strokeWidth)
-    .replace('%SVG_WIDTH%', props.width)
-    .replace('%SVG_HEIGHT%', props.height);
+    ?.replace('%SVG_FILL%', props.fillColor || dp.fillColor)
+    .replace('%SVG_STROKE%', props.strokeColor || dp.strokeColor)
+    .replace('%SVG_STROKE_WIDTH%', props.strokeWidth?.toString() || '')
+    .replace('%SVG_WIDTH%', props.width?.toString() || dp.width)
+    .replace('%SVG_HEIGHT%', props.height?.toString() || dp.height);
 
   return (
     <>
