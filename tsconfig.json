@@ -19,6 +19,13 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "noImplicitReturns": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/utils/*": ["utils/*"],
+      "@/types/*": ["types/*"],
+      "@/pageStyles/*": ["styles/*"],
+      "@/components/*": ["components/*"],
+    },
   },
   "include": [
     "next-env.d.ts",
