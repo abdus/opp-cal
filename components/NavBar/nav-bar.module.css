@@ -4,7 +4,7 @@
   top: 0;
   z-index: 100;
   width: 100%;
-  background-color: var(--background);
+  /*background-color: var(--background);*/
   margin: 1rem 0 2rem 0;
 }
 
