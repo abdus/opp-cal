@@ -16,9 +16,13 @@ export function Modal(props: {
 
   React.useEffect(() => {
     if (!isOpen) {
+      window.document.body.classList.remove('modal-is-open');
+
       if (typeof props.onClose === 'function') {
         props.onClose();
       }
+    } else {
+      window.document.body.classList.add('modal-is-open');
     }
   }, [isOpen]);
 
