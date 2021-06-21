@@ -28,7 +28,7 @@ function MyApp(props: AppProps) {
 
   return (
     <ContextProvider>
-      {isPageLoading && <div className={classes.page_loader} />}
+      {isPageLoading && <div className="page_loader" />}
 
       <NavBar />
       <ThemeSwitcher />

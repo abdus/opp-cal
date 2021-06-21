@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import classes from './modal.module.css';
 
 export function Modal(props: {
@@ -8,7 +9,9 @@ export function Modal(props: {
   title?: string;
   onClose?(): void;
 }) {
+  const router = useRouter();
   const [isOpen, setIsOpen] = React.useState(props.isOpen);
+  const [isOppPageLoading, setIsOppPageLoading] = React.useState(false);
 
   React.useEffect(() => {
     setIsOpen(props.isOpen);
@@ -26,6 +29,18 @@ export function Modal(props: {
     }
   }, [isOpen]);
 
+  React.useEffect(() => {
+    router.events.on('routeChangeStart', () => setIsOppPageLoading(true));
+    router.events.on('routeChangeComplete', () => setIsOppPageLoading(false));
+    router.events.on('routeChangeError', () => setIsOppPageLoading(false));
+
+    return () => {
+      router.events.off('routeChangeStart', () => setIsOppPageLoading(true));
+      router.events.off('routeChangeComplete', () => setIsOppPageLoading(false));
+      router.events.off('routeChangeError', () => setIsOppPageLoading(false));
+    };
+  }, []);
+
   return (
     <>
       <div
@@ -34,6 +49,11 @@ export function Modal(props: {
         }`}
       >
         <div className={classes.modal}>
+          <div
+            style={{ height: '5px' }}
+            className={isOppPageLoading ? 'page_loader' : ''}
+          />
+
           <div className={classes.modal_meta}>
             <strong>{props.title}</strong>
             <button
@@ -44,7 +64,6 @@ export function Modal(props: {
               ✕
             </button>
           </div>
-
           <div>{props.children}</div>
         </div>
       </div>

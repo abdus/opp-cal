@@ -94,3 +94,20 @@ textarea {
   background: linear-gradient(45deg, #649def, #5a7ff2);
   border: none;
 }
+
+@keyframes loader {
+  to {
+    background-position: 135% 0;
+  }
+}
+
+.page_loader {
+  height: 0.3rem;
+  background: linear-gradient(to right, var(--foreground), var(--foreground));
+  background-color: var(--background_input);
+  background-repeat: repeat-y;
+  background-position: -35% 0;
+  background-size: 35%;
+  opacity: 0.5;
+  animation: loader 1s linear infinite;
+}
