@@ -34,8 +34,8 @@
 .meta_item {
   display: flex;
   align-items: center;
-  margin-right: 3rem;
   margin-top: 0.5rem;
+  margin-right: 3rem;
   opacity: 0.6;
 }
 
@@ -46,4 +46,14 @@
   min-width: 1.5rem;
   max-width: 1.5rem;
   margin-right: 0.8rem;
+}
+
+.apply_at {
+  margin-top: 4rem;
+  text-align: center;
+}
+
+.apply_at a {
+  padding: 0.7rem 1.3rem;
+  border-radius: var(--border-radius);
 }

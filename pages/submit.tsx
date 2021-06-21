@@ -3,7 +3,6 @@ import { v4 as uuidV4 } from 'uuid';
 import { useToasts } from 'react-toast-notifications';
 import { Layout } from '../components/Layout';
 import classes from '../styles/Submit.module.css';
-import { ThemeSwitcher } from '../components/ThemeSwitcher';
 import { EmailSubscription } from '../components/EmailSubscription';
 import { Loader } from '../components/Loader';
 import { ProfileCard } from '../components/ProfileCard';
@@ -49,7 +48,6 @@ export default function Submit() {
 
   return (
     <>
-      <ThemeSwitcher />
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <form
           className={classes.form}

@@ -1,7 +1,6 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Layout } from '@/components/Layout';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { EmailSubscription } from '@/components/EmailSubscription';
 import { Loader } from '@/components/Loader';
 import { ProfileCard } from '@/components/ProfileCard';
@@ -33,7 +32,6 @@ export default function ViewOpp(props: PropType) {
 
   return (
     <>
-      <ThemeSwitcher />
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <header className={classes.header}>
           <div className={classes.image}>
@@ -105,6 +103,17 @@ export default function ViewOpp(props: PropType) {
               <br />
             </React.Fragment>
           ))}
+        </div>
+
+        <div className={classes.apply_at}>
+          <a
+            href={opportunity?.apply_at}
+            className="gradient"
+            target="_blank"
+            rel="noreferrer"
+          >
+            APPLY NOW
+          </a>
         </div>
 
         <div

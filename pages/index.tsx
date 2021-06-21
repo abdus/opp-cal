@@ -2,7 +2,6 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Layout } from '../components/Layout';
 // import classes from '../styles/Home.module.css';
-import { ThemeSwitcher } from '../components/ThemeSwitcher';
 import { EmailSubscription } from '../components/EmailSubscription';
 import { OpportunityCard } from '../components/OpportunityCard';
 import { Loader } from '../components/Loader';
@@ -43,7 +42,6 @@ export default function Home(props: PropType) {
 
   return (
     <>
-      <ThemeSwitcher />
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <OpportunityFilter
           onChange={handleFilterChnage}

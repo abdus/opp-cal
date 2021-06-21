@@ -2,7 +2,6 @@ import React from 'react';
 import { GetServerSideProps } from 'next';
 import { Layout } from '@/components/Layout';
 // import classes from '../styles/Home.module.css';
-import { ThemeSwitcher } from '@/components/ThemeSwitcher';
 import { EmailSubscription } from '@/components/EmailSubscription';
 // import { Loader } from '../components/Loader';
 import { ProfileCard } from '@/components/ProfileCard';
@@ -20,7 +19,6 @@ type PropType = {
 export default function Calendar(props: PropType) {
   return (
     <>
-      <ThemeSwitcher />
       <Layout left={<EmailSubscription />} right={<ProfileCard />}>
         <Calender oppDeadlineMap={props.oppMappedToDeadline} />
       </Layout>
