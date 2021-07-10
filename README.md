@@ -1,27 +1,16 @@
-# Next.js TypeScript Template
+# Opportunity Calendar
 
-> A template for quickly starting a Next.js-based project.
+> a webapp to lists opportunities available at different organisations and
+> companies. Ideal for students who never want to miss any opportunities. This
+> webapp is a modified version of
+> [Girl-Code-It/Opportunity-Calendar](https://github.com/Girl-Code-It/Opportunity-Calendar-Frontend)
 
 ## Features
 
-1. TypeScript-enabled. Check out the [TypeScript](./tsconfig.json)
-   configuration
-2. ESLint-enabled
-3. a grid-based Default Layout
-4. Switch between dark and light themes
-5. Loader
+This webapp has multiple features. Following are some of the important ones.
 
-## ESLint Rules
-
-- Style Guide: `airbnb-typescript`
-- `no-use-before-define`: `off`,
-- `@typescript-eslint/no-use-before-define`: `[error]`,
-- `react/jsx-filename-extension`: `[1, { extensions: [".tsx"] }]`,
-- `import/no-default-export`: `[2]`,
-- `import/prefer-default-export`: `off`,
-- `react/jsx-props-no-spreading`: `off`,
-- `react/destructuring-assignment`: `[1, never]`
-
-## Helper Scripts
-
-- to generate a new component, run `yarn gc component-name`
+- [x] Account Creation
+- [x] Post new Opportunities
+- [x] Anyone can view opportunities
+- [x] Apply through the website
+- [x] A digital calendar listing all the opportunities date-wise
