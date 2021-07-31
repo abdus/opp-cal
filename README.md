@@ -28,7 +28,7 @@ This webapp has multiple features. Following are some of the important ones.
 - [TypeScript](https://www.typescriptlang.org/)
 - [React](https://reactjs.org)
 - [Next.js](https://nextjs.org)
-- [Subapase](https://supabase.io/)
+- [Supabase](https://supabase.io/)
 - [PostgreSQL](https://www.postgresql.org/)
 
 
